@@ -4,21 +4,23 @@ let users = [
 ];
 
 const index = (req, res) => {
-    if(users.length > 0) {
-        res.json({
-            status: true,
-            data: users,
-            method: req.method,
-            url: req.url,
-            // menampilkan waktu dari middleware
-            time: req.time.toString()
-        });
-    } else {
-        res.json({
-            status: false,
-            message: 'Data tidak ditemukan',
-        });
-    }
+    // if(users.length > 0) {
+    //     res.json({
+    //         status: true,
+    //         data: users,
+    //         method: req.method,
+    //         url: req.url,
+    //         // menampilkan waktu dari middleware
+    //         time: req.time.toString()
+    //     });
+    // } else {
+    //     res.json({
+    //         status: false,
+    //         message: 'Data tidak ditemukan',
+    //     });
+    // }
+
+    res.render('pages/user/index', {users})
 }
 
 const store = (req, res) => {

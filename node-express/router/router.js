@@ -5,7 +5,13 @@ const usercontroller = require('../controller/user')
 
 router.get('/', (req, res) => {
     // console.log("Hello World");
-    res.send('Hello World!')
+    // res.send('Hello World!')
+    const data = {
+        id: 1, 
+        nama: 'Javascript',
+        date: req.time
+    }
+    res.render('pages/index', {data: data})
 })
 
 router.get('/about', (req, res) => {
@@ -15,8 +21,9 @@ router.get('/about', (req, res) => {
     }
     // untuk mengembalikan json bisa menggunakan.send atau .json
     // res.send(kelas)
-    res.json(kelas)
+    // res.json(kelas)
     // res.send('About Page')
+    res.render('pages/about')
 })
 
 //redirect routing

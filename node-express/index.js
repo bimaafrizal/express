@@ -22,6 +22,13 @@ const myLogger = (req, res, next) => {
 //dipasang diatas router
 app.use(myLogger)
 
+//untuk mengakses file static seperti css atau gambar
+//'assets' adalah nama prefix untuk virtual path
+app.use('/assets', express.static('public'))
+
+//untuk mengakses file view
+app.set('view engine', 'ejs')
+
 //untuk menerima request form input
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-
