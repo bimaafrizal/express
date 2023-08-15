@@ -1,12 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-let users = [
-    {id:1, name: 'John Doe', email: 'john@gmail.com'},
-    {id:2, name: 'Doe', email: 'doe@gmail.com'},
-]
+const usercontroller = require('../controller/user')
 
 router.get('/', (req, res) => {
+    // console.log("Hello World");
     res.send('Hello World!')
 })
 
@@ -26,35 +24,14 @@ router.get('/contact', (req, res) => {
     res.redirect('/users')
 })
 
-router.get('/users', (req, res) => {
-    // res.send('Get User')
-    res.json(users);
-})
+router.get('/users', usercontroller.index)
 
 //request dari form input
-router.post('/users', (req, res) => {
-    users.push(req.body);
-    console.log(req.body);
-    res.send(users);
-    // res.send('Post User')
-})
+router.post('/users', usercontroller.store)
 
 //: digunakan untuk parameter
-router.put('/users/:id', (req, res) => {
-    const id =  parseInt(req.params.id);
-    users.filter(user => {
-        if(user.id === id) {
-            user.name = req.body.name
-            user.email = req.body.email
-        }
-    })
-    res.send(users);
-})
+router.put('/users/:id', usercontroller.update)
 
-router.delete('/users/:id', (req, res) => {
-    const id =  parseInt(req.params.id);
-    users = users.filter(user => user.id !== id)
-    res.send(users)
-})
+router.delete('/users/:id', usercontroller.destroy)
 
 module.exports = router
